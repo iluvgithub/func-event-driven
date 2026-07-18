@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>scala3-project</artifactId>
+    <artifactId>func-event-driven</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
@@ -22,7 +22,7 @@
         <scalatest.version>3.2.19</scalatest.version>
         <munit.version>1.2.1</munit.version>
 
-        <scala-maven-plugin.version>4.9.3</scala-maven-plugin.version>
+        <scala-maven-plugin.version>4.8.1</scala-maven-plugin.version>
         <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
     </properties>
 
@@ -57,14 +57,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Test: MUnit -->
+        <!-- Source: https://mvnrepository.com/artifact/org.typelevel/munit-cats-effect -->
         <dependency>
-            <groupId>org.scalameta</groupId>
-            <artifactId>munit_3</artifactId>
-            <version>${munit.version}</version>
+            <groupId>org.typelevel</groupId>
+            <artifactId>munit-cats-effect_3</artifactId>
+            <version>2.2.0</version>
             <scope>test</scope>
         </dependency>
-
         <!-- Test: Cats Effect Testkit -->
         <dependency>
             <groupId>org.typelevel</groupId>
@@ -109,6 +108,25 @@
                 </configuration>
             </plugin>
 
+
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.43.0</version>
+
+                <configuration>
+                    <scala>
+                        <includes>
+                            <include>src/**/*.scala</include>
+                        </includes>
+
+                        <scalafmt>
+                            <version>3.8.2</version>
+                            <file>${project.basedir}/.scalafmt.conf</file>
+                        </scalafmt>
+                    </scala>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
