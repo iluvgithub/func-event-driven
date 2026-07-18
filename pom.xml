@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>scala3-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <scala.version>3.7.3</scala.version>
+
+        <cats.version>2.13.0</cats.version>
+        <cats-effect.version>3.6.3</cats-effect.version>
+        <fs2.version>3.12.2</fs2.version>
+
+        <scalatest.version>3.2.19</scalatest.version>
+        <munit.version>1.2.1</munit.version>
+
+        <scala-maven-plugin.version>4.9.3</scala-maven-plugin.version>
+        <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Cats -->
+        <dependency>
+            <groupId>org.typelevel</groupId>
+            <artifactId>cats-core_3</artifactId>
+            <version>${cats.version}</version>
+        </dependency>
+
+        <!-- Cats Effect -->
+        <dependency>
+            <groupId>org.typelevel</groupId>
+            <artifactId>cats-effect_3</artifactId>
+            <version>${cats-effect.version}</version>
+        </dependency>
+
+        <!-- FS2 -->
+        <dependency>
+            <groupId>co.fs2</groupId>
+            <artifactId>fs2-core_3</artifactId>
+            <version>${fs2.version}</version>
+        </dependency>
+
+        <!-- Test: ScalaTest -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_3</artifactId>
+            <version>${scalatest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test: MUnit -->
+        <dependency>
+            <groupId>org.scalameta</groupId>
+            <artifactId>munit_3</artifactId>
+            <version>${munit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test: Cats Effect Testkit -->
+        <dependency>
+            <groupId>org.typelevel</groupId>
+            <artifactId>cats-effect-testkit_3</artifactId>
+            <version>${cats-effect.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${scala-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <args>
+                        <arg>-deprecation</arg>
+                        <arg>-feature</arg>
+                        <arg>-unchecked</arg>
+                    </args>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
