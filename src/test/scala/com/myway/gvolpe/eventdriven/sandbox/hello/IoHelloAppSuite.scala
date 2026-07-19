@@ -14,13 +14,12 @@ class IoHelloAppSuite extends CatsEffectSuite:
       assertEquals(result, "Hello, Alice!")
     }
 
-
   test("greet returns the expected greeting"):
     for
       out <- Ref.of[IO, Vector[String]](Vector.empty)
-      console = TestConsole("Alice", out)
+      console           = TestConsole("Alice", out)
       given Console[IO] = console
-      _ <- IoHelloApp.program[IO]
+      _       <- IoHelloApp.program[IO]
       printed <- out.get
     yield assertEquals(
       printed,
@@ -30,11 +29,10 @@ class IoHelloAppSuite extends CatsEffectSuite:
       )
     )
 
-
 final case class TestConsole(
-                              input: String,
-                              output: Ref[IO, Vector[String]]
-                            ) extends Console[IO] {
+  input: String,
+  output: Ref[IO, Vector[String]]
+) extends Console[IO] {
 
   override def readLine: IO[String] =
     IO.pure(input)
