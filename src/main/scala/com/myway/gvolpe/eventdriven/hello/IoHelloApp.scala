@@ -1,8 +1,8 @@
 package com.myway.gvolpe.eventdriven.hello
 
 import cats.Monad
-import cats.effect.std.Console
 import cats.effect.*
+import cats.effect.std.Console
 import cats.syntax.all.*
 
 object IoHelloApp extends IOApp.Simple:
@@ -10,7 +10,7 @@ object IoHelloApp extends IOApp.Simple:
   def greet[F[_] : Monad](name: String): F[String] =
     Monad[F].pure(s"Hello, $name!")
 
-   def program[F[_] : Monad](using C: Console[F]): F[Unit] =
+  def program[F[_] : Monad](using C: Console[F]): F[Unit] =
     for
       _ <- C.print("What's your name? ")
       name <- C.readLine
