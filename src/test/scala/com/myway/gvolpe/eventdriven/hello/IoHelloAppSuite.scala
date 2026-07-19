@@ -22,7 +22,6 @@ class IoHelloAppSuite extends CatsEffectSuite:
       given Console[IO] = console
       _ <- IoHelloApp.program[IO]
       printed <- out.get
-
     yield assertEquals(
       printed,
       Vector(
