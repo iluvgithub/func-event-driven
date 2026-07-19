@@ -1,20 +1,22 @@
 package com.myway.gvolpe.eventdriven.hello
 
-import cats.effect.{IO, IOApp}
+import cats.Monad
+import cats.effect.std.Console
+import cats.effect.*
+import cats.syntax.all.*
 
 object IoHelloApp extends IOApp.Simple:
-  
-  def greet(name: String): IO[String] =
-    IO.pure(s"Hello, $name!")
 
-  
-  val program: IO[Unit] =
+  def greet[F[_] : Monad](name: String): F[String] =
+    Monad[F].pure(s"Hello, $name!")
+
+   def program[F[_] : Monad](using C: Console[F]): F[Unit] =
     for
-      _       <- IO.print("What's your name? ")
-      name    <- IO.readLine
-      greeting <- greet(name)
-      _       <- IO.println(greeting)
+      _ <- C.print("What's your name? ")
+      name <- C.readLine
+      greeting <- greet[F](name)
+      _ <- C.println(greeting)
     yield ()
 
   override def run: IO[Unit] =
-    program
+    program[IO]
