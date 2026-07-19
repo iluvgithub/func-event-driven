@@ -2,7 +2,7 @@ package com.myway.gvolpe.eventdriven.sandbox.circe
 
 import io.circe.Codec
 
-trait JsonCodec
+trait Circe
 
 case class Address(
   streetName: String,
