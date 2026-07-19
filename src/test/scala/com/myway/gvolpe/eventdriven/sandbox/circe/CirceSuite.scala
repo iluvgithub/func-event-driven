@@ -50,5 +50,6 @@ class CirceSuite extends CatsEffectSuite:
     assertEquals(jOne, "{\"One\":{}}")
     assertEquals(jTwo, "{\"Two\":{\"name\":\"dos\"}}")
 
+    assertEquals(person, decode[Person](jPerson).toOption.get)
     assertEquals(one, decode[Digits](jOne).toOption.get)
     assertEquals(two, decode[Digits](jTwo).toOption.get)
