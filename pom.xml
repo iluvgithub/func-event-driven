@@ -72,6 +72,13 @@
             <version>${cats-effect.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/io.circe/circe-parser -->
+        <dependency>
+            <groupId>io.circe</groupId>
+            <artifactId>circe-parser_3</artifactId>
+            <version>0.14.16</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
