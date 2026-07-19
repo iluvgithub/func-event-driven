@@ -1,4 +1,4 @@
-package com.myway.gvolpe.eventdriven.hello
+package com.myway.gvolpe.eventdriven.sandbox.hello
 
 import cats.Show
 import cats.effect.*

@@ -1,11 +1,11 @@
-package com.myway.gvolpe.eventdriven.hello
+package com.myway.gvolpe.eventdriven.sandbox.hello
 
 import cats.Monad
 import cats.effect.*
 import cats.effect.std.Console
 import cats.syntax.all.*
 
-object IoHelloApp extends IOApp.Simple:
+object IoHelloApp extends  IOApp.Simple:
 
   def greet[F[_] : Monad](name: String): F[String] =
     Monad[F].pure(s"Hello, $name!")
