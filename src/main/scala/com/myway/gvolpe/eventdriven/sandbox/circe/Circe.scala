@@ -9,3 +9,12 @@ case class Address(
   streetNumber: Int,
   flat: Option[String]
 ) derives Codec.AsObject
+
+case class Person(
+  age: Int,
+  name: String
+) derives Codec.AsObject
+
+enum Digits derives Codec.AsObject:
+  case One
+  case Two(name: String)

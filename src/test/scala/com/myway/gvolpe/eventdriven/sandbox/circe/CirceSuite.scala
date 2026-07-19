@@ -12,7 +12,7 @@ class CirceSuite extends CatsEffectSuite:
     // act
     val jsonString = address.asJson.noSpaces
     // assert
-    assertEquals("{\"streetName\":\"Baker\",\"streetNumber\":221,\"flat\":\"B\"}", jsonString)
+    assertEquals(jsonString, "{\"streetName\":\"Baker\",\"streetNumber\":221,\"flat\":\"B\"}")
 
   test("from Json ok"):
     // arrange
@@ -35,3 +35,20 @@ class CirceSuite extends CatsEffectSuite:
       decoded.fold(_.toString, _ => ""),
       "DecodingFailure at .streetName: Missing required field"
     )
+
+  test("from/to json extra case"):
+    // arrange
+    val person = Person(40, "Joe")
+    val one    = Digits.One
+    val two    = Digits.Two("dos")
+    // act
+    val jPerson = person.asJson.noSpaces
+    val jOne    = one.asJson.noSpaces
+    val jTwo    = two.asJson.noSpaces
+    // assert
+    assertEquals(jPerson, "{\"age\":40,\"name\":\"Joe\"}")
+    assertEquals(jOne, "{\"One\":{}}")
+    assertEquals(jTwo, "{\"Two\":{\"name\":\"dos\"}}")
+
+    assertEquals(one, decode[Digits](jOne).toOption.get)
+    assertEquals(two, decode[Digits](jTwo).toOption.get)
