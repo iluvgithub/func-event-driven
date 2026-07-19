@@ -16,10 +16,13 @@ class CirceSuite extends CatsEffectSuite:
 
   test("from Json ok"):
     // arrange
-    val jsonString = "{\"streetName\":\"Baker\",\"streetNumber\":221,\"flat\":\"B\"}"
+    val jsonString0 = "{\"streetName\":\"Baker\",\"streetNumber\":220}"
+    val jsonString  = "{\"streetName\":\"Baker\",\"streetNumber\":221,\"flat\":\"B\"}"
     // act
-    val decoded: Either[circe.Error, Address] = decode[Address](jsonString)
+    val decoded0: Either[circe.Error, Address] = decode[Address](jsonString0)
+    val decoded: Either[circe.Error, Address]  = decode[Address](jsonString)
     // assert
+    assertEquals(decoded0, Right(Address("Baker", 220, None)))
     assertEquals(decoded, Right(Address("Baker", 221, Some("B"))))
 
   test("from Json not ok"):
