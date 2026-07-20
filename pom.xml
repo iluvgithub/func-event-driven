@@ -49,6 +49,17 @@
             <version>${fs2.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>dev.profunktor</groupId>
+            <artifactId>redis4cats-effects_3</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.profunktor</groupId>
+            <artifactId>redis4cats-log4cats_3</artifactId>
+            <version>1.6.0</version>
+        </dependency>
         <!-- Test: ScalaTest -->
         <dependency>
             <groupId>org.scalatest</groupId>
